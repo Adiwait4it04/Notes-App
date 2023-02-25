@@ -38,7 +38,8 @@ class Screen1 extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
                     child: Text(
-                      " Keep All Your Notes at One Place",
+                      " Keep All Your Notes at One Place.",
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.roboto(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

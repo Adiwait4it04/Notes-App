@@ -40,6 +40,7 @@ class Screen2 extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "We Ensure That All Your Data Is Secured.",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

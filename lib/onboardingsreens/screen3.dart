@@ -40,6 +40,7 @@ class Screen3 extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "Lets Begin Something Great With Us!",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
