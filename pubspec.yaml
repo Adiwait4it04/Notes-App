@@ -40,6 +40,8 @@ dependencies:
   google_fonts: ^4.0.3
   cloud_firestore: ^4.4.3
   smooth_page_indicator: ^1.0.1
+  google_sign_in: ^6.0.1
+  google_sign_in_web: ^0.11.0+1
 
 dev_dependencies:
   flutter_test:
