@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_name, body_might_complete_normally_nullable, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_name, body_might_complete_normally_nullable, non_constant_identifier_names, avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
