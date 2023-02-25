@@ -51,7 +51,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     controller: _controller,
                     count: 3,
                     effect: JumpingDotEffect(
-                      activeDotColor: Colors.black,
+                      activeDotColor: Color(0xFF8F00FF),
                       dotHeight: 5,
                       radius: 3,
                     ),
@@ -81,7 +81,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           if (onSecondLastPage) {
                             setState(() {
                               nextText = const Text(
-                                "Get Started? :)",
+                                "Get Started :)",
                                 style: TextStyle(fontSize: 14),
                               );
                             });
