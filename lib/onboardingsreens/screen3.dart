@@ -13,8 +13,8 @@ class Screen3 extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              Color(0xFF2196f3),
               Color(0xFFf44336),
+              Color(0xFF2196f3),
             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
           ),
           child: Column(
