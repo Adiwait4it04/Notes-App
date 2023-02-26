@@ -1,11 +1,17 @@
-// ignore_for_file: prefer_const_constructors, unused_import, implementation_imports, unnecessary_import, file_names
+// ignore_for_file: prefer_const_constructors, unused_import, implementation_imports, unnecessary_import, file_names, sort_child_properties_last, use_build_context_synchronously, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:project1/services/authservices.dart';
+import 'home.dart';
 
 class Signup extends StatelessWidget {
-  const Signup({super.key});
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmpasswordController = TextEditingController();
+  Signup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +23,16 @@ class Signup extends StatelessWidget {
             maxWidth: MediaQuery.of(context).size.width,
           ),
           decoration: BoxDecoration(
-            color: Color(0xFF27DEC0),
+            color: Color(0xFF0F2027),
           ),
           child: Column(
             children: [
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(10),
                   child: Center(
-                    child: Image.asset("assets/signup.jpg"),
+                    child: Image.asset("assets/signupm.jpg"),
                   ),
                 ),
               ),
@@ -51,11 +57,156 @@ class Signup extends StatelessWidget {
                             "Sign Up",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF27DEC0),
+                              color: Color(0xFF0F2027),
                               fontSize: 30,
                             ),
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextField(
+                          style: const TextStyle(color: Colors.black),
+                          obscureText: true,
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 3,
+                                color: Color(0xFF0F2027),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "EMAIL",
+                            labelStyle: TextStyle(
+                              color: Color(0xFF0F2027),
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextField(
+                          style: const TextStyle(color: Colors.black),
+                          obscureText: true,
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 3,
+                                color: Color(0xFF0F2027),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "PASSWORD",
+                            labelStyle: TextStyle(
+                              color: Color(0xFF0F2027),
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextField(
+                          style: const TextStyle(color: Colors.black),
+                          obscureText: true,
+                          controller: confirmpasswordController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 3,
+                                color: Color(0xFF0F2027),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: "CONFIRM PASSWORD",
+                            labelStyle: TextStyle(
+                              color: Color(0xFF0F2027),
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: 300,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              if (emailController.text == "" ||
+                                  passwordController.text == "") {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:
+                                        Text("All fields are to be filled"),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              } else if (passwordController.text !=
+                                  confirmpasswordController.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Enter correct password"),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              } else {
+                                User? result = await Authservice().Register(
+                                    emailController.text,
+                                    passwordController.text,
+                                    context);
+                                if (result != null) {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => home_page()),
+                                      (route) => false);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Error occured"),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                }
+                              }
+                            },
+                            child: const Text(
+                              "SIGN UP",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF0F2027),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
                       ),
                     ],
                   ),
