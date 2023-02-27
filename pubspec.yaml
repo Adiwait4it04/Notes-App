@@ -42,6 +42,7 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   google_sign_in: ^6.0.1
   google_sign_in_web: ^0.11.0+1
+  flutter_signin_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -5,17 +5,29 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/services/authservices.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'home.dart';
 
-class Signup extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmpasswordController = TextEditingController();
+bool loading = false;
+
+class Signup extends StatefulWidget {
   Signup({super.key});
+
+  @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  TextEditingController confirmpasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Container(
           constraints: BoxConstraints(
@@ -64,7 +76,7 @@ class Signup extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 1,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10),
@@ -206,8 +218,66 @@ class Signup extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
+                        height: 2,
+                      ),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              child: Divider(
+                                color: Color(0xFF0F2027),
+                              ),
+                              height: 200,
+                              width: 100,
+                            ),
+                            Text(
+                              " Or Via Social Media ",
+                              style: TextStyle(
+                                color: Color(0xFF0F2027),
+                              ),
+                            ),
+                            SizedBox(
+                              child: Divider(
+                                color: Color(0xFF0F2027),
+                              ),
+                              height: 200,
+                              width: 100,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
                         height: 5,
                       ),
+                      loading
+                          ? CircularProgressIndicator()
+                          : Center(
+                              child: Container(
+                                height: 50.0,
+                                width: 330.0,
+                                child: SignInButton(Buttons.Google, mini: false,
+                                    onPressed: () async {
+                                  setState(
+                                    () {
+                                      loading == true;
+                                    },
+                                  );
+                                  await Authservice().signInWithGoogle();
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => home_page(),
+                                      ),
+                                      (route) => false);
+                                  setState(
+                                    () {
+                                      loading = false;
+                                    },
+                                  );
+                                }),
+                              ),
+                            )
                     ],
                   ),
                 ),
