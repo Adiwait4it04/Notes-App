@@ -49,7 +49,7 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               Expanded(
-                flex: 3,
+                flex: 2,
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -218,7 +218,7 @@ class _SignupState extends State<Signup> {
                         ),
                       ),
                       SizedBox(
-                        height: 2,
+                        height: 10,
                       ),
                       Center(
                         child: Row(
@@ -228,7 +228,7 @@ class _SignupState extends State<Signup> {
                               child: Divider(
                                 color: Color(0xFF0F2027),
                               ),
-                              height: 200,
+                              height: 100,
                               width: 100,
                             ),
                             Text(
@@ -241,7 +241,7 @@ class _SignupState extends State<Signup> {
                               child: Divider(
                                 color: Color(0xFF0F2027),
                               ),
-                              height: 200,
+                              height: 100,
                               width: 100,
                             ),
                           ],
@@ -253,31 +253,33 @@ class _SignupState extends State<Signup> {
                       loading
                           ? CircularProgressIndicator()
                           : Center(
-                              child: Container(
-                                height: 50.0,
-                                width: 330.0,
-                                child: SignInButton(Buttons.Google, mini: false,
-                                    onPressed: () async {
-                                  setState(
-                                    () {
-                                      loading == true;
-                                    },
-                                  );
-                                  await Authservice().signInWithGoogle();
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => home_page(),
-                                      ),
-                                      (route) => false);
-                                  setState(
-                                    () {
-                                      loading = false;
-                                    },
-                                  );
-                                }),
+                              child: Center(
+                                child: Container(
+                                  height: 50.0,
+                                  width: 330.0,
+                                  child: SignInButton(Buttons.Google,
+                                      onPressed: () async {
+                                    setState(
+                                      () {
+                                        loading == true;
+                                      },
+                                    );
+                                    await Authservice().signInWithGoogle();
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => home_page(),
+                                        ),
+                                        (route) => false);
+                                    setState(
+                                      () {
+                                        loading = false;
+                                      },
+                                    );
+                                  }),
+                                ),
                               ),
-                            )
+                            ),
                     ],
                   ),
                 ),
